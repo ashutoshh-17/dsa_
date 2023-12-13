@@ -110,6 +110,7 @@ int main(){
 
             case 2:
             cout<<"Sorting roll call using bubble sort: "<<endl;
+	    cin>>r;
             std.sort_rollno();
             break;
 
