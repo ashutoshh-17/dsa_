@@ -10,28 +10,30 @@ represent the distance between them. Find minimum spanning tree using Prims’s 
 #define INFINITY 999
 using namespace std;
 
-class MST
+class MST //class MST is created
 {
-   int graph[SIZE][SIZE],vertex,v1,v2;
+   int graph[SIZE][SIZE],vertex,v1,v2; //variable decleration
    public:
       MST()
       {
         for(int i=0;i<SIZE;i++)  //initialise graph
-         { for(int j=0;j<SIZE;j++)
-             graph[i][j]=0;    }
+         { 
+            for(int j=0;j<SIZE;j++)
+             graph[i][j]=0;    
+         }
        }
        
-     void find_PrimsMST()
+     void find_PrimsMST()  //function created
        {
          int select[SIZE],i,j,k,min_dist,total=0;
-         for(i=0;i<vertex;i++)
+         for(i=0;i<vertex;i++) // Initialization: Set all vertices as unselected
              select[i]=0;
            cout<<"\n The Minimum Spanning Tree ";
-           select[0]=1;
-           for(k=1;k<vertex;k++)
+           select[0]=1; // Mark the first vertex as selected
+           for(k=1;k<vertex;k++) // Loop to select (vertex - 1) edges for the MST
            {
              min_dist=INFINITY;
-             for(i=0;i<vertex;i++)
+             for(i=0;i<vertex;i++) // Loop to find the minimum weight edge that connects a selected vertex to an unselected vertex for (i = 0; i < vertex; i++)
              {
                for(j=0;j<vertex;j++)
                 {
@@ -40,20 +42,21 @@ class MST
                        if(graph[i][j] <min_dist)
                          {
                            min_dist=graph[i][j];
-                           v1=i;
+                           v1=i; // Store the vertices of the minimum weight edge
                            v2=j;
                            }
                        }
                   }
               }
-              cout<<" \n Edge (" <<v1 <<" " <<v2<<")"<<min_dist;
-              select[v1]=select[v2]=1;
-              total=total+min_dist;
+              cout<<" \n Edge (" <<v1 <<" " <<v2<<")"<<min_dist; // Output the selected edge and its weight
+              select[v1]=select[v2]=1; // Mark the selected vertices
+              total=total+min_dist; // Accumulate the total weight of the MST
             }
-            cout<<"\n Total Distance: "<<total;
+            cout<<"\n Total Distance: "<<total; // Output the total weight of the MST
             cout<<"\n";
         }
-       void get_data()
+
+       void get_data() //function is created
        { 
          int len,n;
          cout<<"\n Enter number of departments in the college ";
@@ -70,7 +73,7 @@ class MST
              graph[v1][v2]=graph[v2][v1]=len;
            }
         }   
-        void printmatrix()
+        void printmatrix() //function is created
         {
          cout<<"\n Adjacency Matrix for departments in college :\n";
          for(int i=0;i<vertex;i++)
