@@ -1,0 +1,110 @@
+#include<iostream>
+using namespace std;
+void heapify(int arr[], int n, int i) {
+   int temp;
+   int largest = i;
+   int l = 2 * i + 1;
+   int r = 2 * i + 2;
+   if (l < n && arr[l] > arr[largest])
+      largest = l;
+   if (r < n && arr[r] > arr[largest])
+      largest = r;
+   if (largest != i) {
+      temp = arr[i];
+      arr[i] = arr[largest];
+      arr[largest] = temp;
+      heapify(arr, n, largest);
+   }
+}
+void printarray(int arr[],int n)
+   { int i;
+     for (i = 0; i < n; ++i)
+     cout<<arr[i]<<"   ";
+     cout<<"\n";
+}  
+void heapSort(int arr[], int n) {
+   int temp;
+   for (int i = n / 2 - 1; i >= 0; i--)
+      heapify(arr, n, i);
+   for (int i = n - 1; i >= 0; i--) {
+      temp = arr[0];
+      arr[0] = arr[i];
+      arr[i] = temp;
+      heapify(arr, i, 0);
+      printarray(arr,n);
+   }
+ }
+
+
+int main() {
+   int arr[10] ,n,i;
+   cout<<"\n Enter number of elements to be sorted : ";
+   cin>>n; 
+   cout<<"\n Enter elements :";
+   for(i=0;i<n;i++)
+   cin>>arr[i];
+   cout<<"\n\nGiven array is: "<<endl;
+   for (i = 0; i<n; i++)
+   cout<<arr[i]<<" ";
+   cout<<endl;
+   heapSort(arr, n);
+   printf("\n\nSorted array is: \n");
+   for (i = 0; i < n; ++i)
+   cout<<arr[i]<<" ";
+   cout<<endl;
+}
+
+
+/* Algorithm : The root of the heap is stored at index 0.
+For a node at index i, its left child is at index 2*i + 1 and its right child is at index 2*i + 2.
+Operations:
+
+a. Heapify Up (Insertion):
+
+Start with the new element at the last index.
+Compare the value of the element with its parent.
+If the element is greater than its parent, swap them and repeat until the heap property is restored.
+plaintext
+Copy code
+HeapifyUp(heap, index):
+    while index > 0:
+        parent_index = (index - 1) / 2
+        if heap[index] > heap[parent_index]:
+            swap(heap[index], heap[parent_index])
+            index = parent_index
+        else:
+            break
+b. Heapify Down (Deletion/Extract Max):
+
+Replace the root with the last element.
+Compare the value of the root with its children.
+Swap with the larger child until the heap property is restored.
+plaintext
+Copy code
+HeapifyDown(heap, index, heap_size):
+    while 2 * index + 1 < heap_size:
+        left_child_index = 2 * index + 1
+        right_child_index = 2 * index + 2
+        larger_child_index = left_child_index
+
+        if right_child_index < heap_size and heap[right_child_index] > heap[left_child_index]:
+            larger_child_index = right_child_index
+
+        if heap[index] < heap[larger_child_index]:
+            swap(heap[index], heap[larger_child_index])
+            index = larger_child_index
+        else:
+            break
+Build Max Heap:
+
+Build a max heap from an unsorted array.
+Start from the last non-leaf node and perform heapify down until the root.
+plaintext
+Copy code
+BuildMaxHeap(array):
+    n = length of array
+    for i from (n/2 - 1) to 0:
+        HeapifyDown(array, i, n)
+This algorithm assumes a 0-based indexing system. The swap function is a placeholder for
+a function that swaps elements in the array. The heap is the array representing the heap, and heap_size is the number of elements currently in the 
+*/
