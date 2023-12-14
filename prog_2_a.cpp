@@ -144,3 +144,17 @@ int main()
     }
     return 0;
 }
+
+/* Algorithm :
+insertion_Sort (Struct student S[], int n)
+Step 1: For i = 1 to n-1
+i. Set key to s[i]
+ii. Set j to i-1
+iii. While j>=0 AND strcmp(s[i].name,key.name)>0
+a. Assign s[j] to s[j+1]
+b. Decrement j
+iv. End While
+Step 2: Assign key to s[j+1]
+Step 3: End for
+Step 4: end of insertion sort
+*/
